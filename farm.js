@@ -156,7 +156,11 @@ const getRevenueForCrop = (input, environmentFactors) => {
 
 const getProfitForCrop = (input, environmentFactors) => {
   let result = 0;
-  input.crops.forEach((profit) => {
+  const arrayTotalProfit = input.crops.map((profit) => {
+    const namePlant = profit.crop.name;
+    const salePrice = profit.crop.salePrice;
+    const costss = profit.crop.cost;
+    const numCrops = profit.numCrops;
     const yieldForPlant = getYieldForPlant(profit.crop, environmentFactors);
     result +=
       (profit.crop.salePrice - profit.crop.cost) *
@@ -179,18 +183,10 @@ const getProfitForCrop = (input, environmentFactors) => {
           profit.numCrops.toFixed(2)
         ).toFixed(2)
     );
-  });
-
-  const arrayTotalProfit = input.crops.map((profit) => {
-    const yieldForPlant = getYieldForPlant(profit.crop, environmentFactors);
-    const namePlant = profit.crop.name;
-    const salePrice = profit.crop.salePrice;
-    const costss = profit.crop.cost;
-    const numCrops = profit.numCrops;
 
     return `${namePlant}: total profit 1 crop: €${(
       (salePrice - costss) *
-      yieldForPlant *
+      yieldForPlant.toFixed(2) *
       numCrops
     ).toFixed(2)}`;
   });
