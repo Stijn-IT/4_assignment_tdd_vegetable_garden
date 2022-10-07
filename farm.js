@@ -43,7 +43,7 @@ const getYieldForPlant = (input, environmentFactors) => {
         factorWind = 1;
     }
     console.log(
-      "RESULT, getYieldForPlant: " + input.name + ":",
+      `RESULT, getYieldForPlant: ${input.name}:`,
       plantyield + " kilo * factorsun " + factorSun,
       "* factorwind " + factorWind,
       "=",
@@ -137,7 +137,7 @@ const getRevenueForCrop = (input, environmentFactors) => {
     const yieldForPlant = getYieldForPlant(revenue.crop, environmentFactors);
     result += yieldForPlant * revenue.crop.salePrice * revenue.numCrops;
     console.log(
-      "RESULT revenue 1 crop, getRevenueForCrop: " + revenue.crop.name + ":",
+      `RESULT revenue 1 crop, getRevenueForCrop: ${revenue.crop.name}:`,
       yieldForPlant.toFixed(2) +
         " kilo (yield) * €" +
         revenue.crop.salePrice.toFixed(2) +
@@ -169,18 +169,18 @@ const getProfitForCrop = (input, environmentFactors) => {
 
     console.log(
       "RESULT profit 1 crop, getProfitForCrop:",
-      profit.crop.name + ": (€" + profit.crop.salePrice,
-      "salePrice - €" + profit.crop.cost,
+      `${namePlant}: (€${salePrice}`,
+      `salePrice - €${costss}`,
       "costs)",
       "*",
-      yieldForPlant,
+      yieldForPlant.toFixed(2),
       "kilo (yield) *",
-      profit.numCrops,
+      numCrops,
       "numCrops = €" +
         (
-          (profit.crop.salePrice - profit.crop.cost).toFixed(2) *
+          (salePrice - costss).toFixed(2) *
           yieldForPlant.toFixed(2) *
-          profit.numCrops.toFixed(2)
+          numCrops.toFixed(2)
         ).toFixed(2)
     );
 
